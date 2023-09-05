@@ -1,0 +1,43 @@
+<template>
+  <div>
+    <div class="text-gray-600 cursor-pointer" @click="router.push('/users')">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 inline">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
+      </svg> Back
+    </div>
+    <h2 class="text-4xl text-gray-950 mb-5">Create</h2>
+    <div class="grid grid-cols-3 gap-4">
+      <div class="col-span-2">
+        <UserForm @sent="sendForm" @avatar-changed="onAvatarChanged"/>
+      </div>
+      <div class="col-span-1">
+        <PreviewUserAvatar :initialize-avatar="currentAvatarPreview"/>
+      </div>
+    </div>
+    <div v-if="hasImgurAPIInstance">
+      Imgur API Instance loaded!
+    </div>
+  </div>
+</template>
+<script setup>
+import {reactive, ref} from 'vue'
+import {useRouter} from 'vue-router'
+import {isImgurAPIInitialized} from '@/bootstrap/axios'
+import {useUserStore} from '@/stores/user'
+import PreviewUserAvatar from "@/components/user/PreviewUserAvatar.vue";
+import UserForm from "@/components/user/UserForm.vue";
+
+const userStore = useUserStore()
+const router = useRouter()
+
+const hasImgurAPIInstance = reactive(isImgurAPIInitialized())
+const currentAvatarPreview = ref('')
+
+const sendForm = async (sentForm) => {
+  await userStore.createUser(sentForm)
+  router.push(`/users`)
+}
+const onAvatarChanged = (avatarUrl) => {
+  currentAvatarPreview.value = avatarUrl
+}
+</script>
