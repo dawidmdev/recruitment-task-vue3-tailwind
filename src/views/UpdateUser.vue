@@ -7,13 +7,13 @@
     </div>
     <h2 class="text-4xl text-gray-950 mb-5">Edit</h2>
     <div class="grid grid-cols-3 gap-4">
-      <div class="col-span-2">
+      <div class="col-span-3 lg:col-span-2 md:col-span-2 sm:mb-10">
         <UserForm v-if="isSelectedUserLoaded"
                   @sent="sendForm"
                   @avatar-changed="onAvatarChanged"
                   :initialize-form="userStore.getSelectedUser"/>
       </div>
-      <div class="col-span-1">
+      <div class="col-span-3 lg:col-span-1 md:col-span-2">
         <PreviewUserAvatar v-if="isSelectedUserLoaded"
                            :initialize-avatar="currentAvatarPreview"/>
       </div>
