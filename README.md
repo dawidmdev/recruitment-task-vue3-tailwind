@@ -27,8 +27,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 Default `initializeImgurAPI()` from `@/bootstrap/axios.js` execute in main.js (globally bootstrapped), but you can initialize Imgur API from every component/view when
 you need to use `@/services/ImgurService.js` (lazy loading). To check if ImgurAPI is initialized, use `isImgurAPIInitialized()` from `@/bootstrap/axios.js`
 
-ImgurService is only a test-model (no real integration with Imgur API). If you initialized `initializeImgurAPI()` and added `VUE_APP_IMGUR_KEY` key with random value in .env, you can make fake-upload (only preview selected photo)
-without real upload to Imgur API. You can still add avatar via URL.
+ImgurService is only a test-model (no real integration with Imgur API). You can make a fake upload (only a preview of a selected photo) without a real upload to Imgur API. There is still an option to add an avatar via the avatar URL field in edit/create form.
 
 ### .env
 Clone .env.example and rename to .env.
